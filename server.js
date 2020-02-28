@@ -23,6 +23,7 @@ const app = express();
 // Setting the server port - must be different then what's used on the front end
 const PORT = process.env.PORT || 5000;
 
+
 // Routes
 require("./routes/db_routes/GroupRoutes")(app);
 require("./routes/db_routes/UserRoutes")(app);
@@ -36,7 +37,7 @@ app.use(cors());
 app.use(cookieParser());
 
 var connection;
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {

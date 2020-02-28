@@ -1,4 +1,4 @@
-var db = require("../db_routes/GroupRoutes");
+var db = require("../../models/index");
 
 module.exports = function (app) {
 
