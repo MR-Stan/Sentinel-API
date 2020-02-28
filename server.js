@@ -15,6 +15,8 @@ const db = require("./models/index");
 
 // const keys = require("./keys");
 
+const mysql = require('mysql2');
+
 // Initializing the server
 const app = express();
 
