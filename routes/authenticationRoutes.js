@@ -7,25 +7,23 @@ const jwt = require('jsonwebtoken');
 // // npm bcryptjs - password encryption
 const bcrypt = require('bcryptjs');
 
-const host = 'https://sentinel-api.herokuapp.com';
-
 module.exports = function (app) {
 
-    app.get(host + '/', (req, res) => {
+    app.get('/', (req, res) => {
         res.send('yoooooooo');
     });
 
-    app.post(host + '/test', (req, res) => {
+    app.post('/test', (req, res) => {
         res.send('success');
     });
 
     // parsing form data
-    app.post(host + '/login/submit', (req, res) => {
+    app.post('/login/submit', (req, res) => {
         res.redirect('/login/' + req.body.username.trim() + '/' + req.body.password.trim())
     });
 
     // user login
-    app.get(host + '/login/:username/:password', (req, res) => {
+    app.get('/login/:username/:password', (req, res) => {
         // check db for username
         db.User.findOne({
             where: {
@@ -70,7 +68,7 @@ module.exports = function (app) {
     });
 
     // create a new user
-    app.post(host + '/create/user', (req, res) => {
+    app.post('/create/user', (req, res) => {
         let textPassword = req.body.password.trim();
         // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
         // increasing the cost factor by 1 doubles the necessary time
