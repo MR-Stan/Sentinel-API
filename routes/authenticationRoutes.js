@@ -9,9 +9,9 @@ const bcrypt = require('bcryptjs');
 
 module.exports = function (app) {
 
-    app.get('/test', (req, res) => {
-        res.json('test success');
-    });
+    app.post('https://sentinel-api.herokuapp.com/test', (req, res) => {
+        console.log(req.body);
+    })
 
     // parsing form data
     app.post('/login/submit', (req, res) => {
