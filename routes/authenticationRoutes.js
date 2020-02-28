@@ -7,19 +7,21 @@ const jwt = require('jsonwebtoken');
 // // npm bcryptjs - password encryption
 const bcrypt = require('bcryptjs');
 
+const host = 'https://sentinel-api.herokuapp.com';
+
 module.exports = function (app) {
 
-    app.post('https://sentinel-api.herokuapp.com/test', (req, res) => {
-        res.json({"test":"success"});
+    app.post(host + '/test', (req, res) => {
+        res.json({ test: 'success' });
     })
 
     // parsing form data
-    app.post('https://sentinel-api.herokuapp.com/login/submit', (req, res) => {
+    app.post(host + '/login/submit', (req, res) => {
         res.redirect('/login/' + req.body.username.trim() + '/' + req.body.password.trim())
     });
 
     // user login
-    app.get('https://sentinel-api.herokuapp.com/login/:username/:password', (req, res) => {
+    app.get(host + '/login/:username/:password', (req, res) => {
         // check db for username
         db.User.findOne({
             where: {
@@ -64,7 +66,7 @@ module.exports = function (app) {
     });
 
     // create a new user
-    app.post('https://sentinel-api.herokuapp.com/create/user', (req, res) => {
+    app.post(host + '/create/user', (req, res) => {
         let textPassword = req.body.password.trim();
         // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
         // increasing the cost factor by 1 doubles the necessary time
@@ -91,7 +93,7 @@ module.exports = function (app) {
     });
 
     // log out and clear cookies
-    app.post('https://sentinel-api.herokuapp.com/logout', (req, res) => {
+    app.post(host + '/logout', (req, res) => {
 
         // set cookie to all req.cookies
         cookie = req.cookies;
