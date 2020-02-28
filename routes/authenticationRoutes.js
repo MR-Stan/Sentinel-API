@@ -9,8 +9,8 @@ const bcrypt = require('bcryptjs');
 
 module.exports = function (app) {
 
-    app.get('/', (req, res) => {
-        res.json('test');
+    app.get('/test', (req, res) => {
+        res.json('test success');
     });
 
     // parsing form data
@@ -80,7 +80,7 @@ module.exports = function (app) {
                     last_name: req.body.firstName.trim(),
                     password: hash,
                     email: req.body.email.trim(),
-                    phone_number: req.body.phoneNumber.trim(),                   
+                    phone_number: req.body.phoneNumber.trim(),
                 }).then(function (response) {
                     if (response) {
                         res.redirect('/');
