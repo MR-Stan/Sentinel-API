@@ -95,7 +95,7 @@ module.exports = function (app) {
     });
 
     // log out and clear cookies
-    app.post(host + '/logout', (req, res) => {
+    app.post('/logout', (req, res) => {
 
         // set cookie to all req.cookies
         cookie = req.cookies;
