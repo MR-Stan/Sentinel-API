@@ -24,21 +24,24 @@ const PORT = process.env.PORT || 5000;
 // Routes
 require("./routes/db_routes/GroupRoutes")(app);
 require("./routes/db_routes/UserRoutes")(app);
-require('./routes/apiRoutes')(app);
+require('./routes/authenticationRoutes')(app);
 
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static('public'));
 app.use(cors());
 app.use(cookieParser());
 
+var connection;
 var syncOptions = { force: true };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
     syncOptions.force = true;
+}
+else if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
 }
 
 // starting the server, syncing our models
