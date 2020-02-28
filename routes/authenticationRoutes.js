@@ -11,9 +11,13 @@ const host = 'https://sentinel-api.herokuapp.com';
 
 module.exports = function (app) {
 
+    app.get(host + '/', (req, res) => {
+        res.send('yoooooooo');
+    });
+
     app.post(host + '/test', (req, res) => {
-        res.json({ test: 'success' });
-    })
+        res.send('success');
+    });
 
     // parsing form data
     app.post(host + '/login/submit', (req, res) => {
