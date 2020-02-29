@@ -40,7 +40,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         GroupId: {
             type: DataTypes.INTEGER
-        }
+        },
+        pinColor: DataTypes.STRING,
     });
 
 
