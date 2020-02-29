@@ -31,12 +31,10 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
-
 // Routes
 require("./routes/db_routes/GroupRoutes")(app);
 require("./routes/db_routes/UserRoutes")(app);
 require('./routes/authenticationRoutes')(app);
-
 
 var connection;
 var syncOptions = { force: false };
