@@ -21,7 +21,7 @@ module.exports = function (app) {
 
     // this route creates a new user //
     app.post("/api/user", function (req, res) {
-        const textPassword = req.body.password.trim();
+        const textPassword = req.body.pass.trim();
         // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
         // increasing the cost factor by 1 doubles the necessary time
         // more time means harder to brute force crack the password
