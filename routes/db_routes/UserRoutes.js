@@ -29,7 +29,12 @@ module.exports = function (app) {
         bcrypt.genSalt(saltRounds, function (err, salt) {
             bcrypt.hash(textPassword, salt, function (err, hash) {
                 if (err) throw err;
-                db.Sen_User.create(req.body)
+                db.Sen_User.create({
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    pass: hash
+                })
                     .then(function (dbUser) {
                         res.json(dbUser);
                     });
