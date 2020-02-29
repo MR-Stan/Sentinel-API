@@ -76,9 +76,9 @@ module.exports = function (app) {
         //             console.log(err);
         //         }
         db.User.create({
-            first_name: req.body.firstName.trim(),
-            last_name: req.body.firstName.trim(),
-            pass: hash,
+            first_name: req.body.first_name.trim(),
+            last_name: req.body.last_name.trim(),
+            pass: req.body.pass.trim(),
             email: req.body.email.trim(),
         }).then(function (response) {
             res.send('user successfully created')
