@@ -25,19 +25,17 @@ const app = express();
 // Setting the server port - must be different then what's used on the front end
 const PORT = process.env.PORT || 5000;
 
-// Routes
-
-
-
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
+// Routes
 require("./routes/db_routes/GroupRoutes")(app);
 require("./routes/db_routes/UserRoutes")(app);
 require('./routes/authenticationRoutes')(app);
+
 var connection;
 var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
