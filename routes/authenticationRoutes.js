@@ -19,11 +19,11 @@ module.exports = function (app) {
     });
 
     // user login
-    app.get('/login/:username/:password', (req, res) => {
+    app.get('/login/:email/:password', (req, res) => {
         // check db for username
-        db.User.findOne({
+        db.Sen_user.findOne({
             where: {
-                username: req.params.email
+                email: req.params.email
             }
         }).then(function (user) {
             // if username does not exist
@@ -75,7 +75,7 @@ module.exports = function (app) {
         //         if (err) {
         //             console.log(err);
         //         }
-        db.User.create({
+        db.Sen_user.create({
             first_name: req.body.first_name.trim(),
             last_name: req.body.last_name.trim(),
             pass: req.body.pass.trim(),
