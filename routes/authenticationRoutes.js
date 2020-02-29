@@ -15,7 +15,7 @@ module.exports = function (app) {
 
     // parsing form data
     app.post('/login/submit', (req, res) => {
-        res.redirect('/login/' + req.body.email.trim() + '/' + req.body.pass.trim())
+        res.redirect('/login/' + req.body.email.trim() + '/' + req.body.pass.trim());
     });
 
     // user login
@@ -65,16 +65,16 @@ module.exports = function (app) {
 
     // create a new user
     app.post('/create/user', (req, res) => {
-        // let textPassword = req.body.password.trim();
+        let textPassword = req.body.password.trim();
         // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
         // increasing the cost factor by 1 doubles the necessary time
         // more time means harder to brute force crack the password
-        // const saltRounds = 10;
-        // bcrypt.genSalt(saltRounds, function (err, salt) {
-        //     bcrypt.hash(textPassword, salt, function (err, hash) {
-        //         if (err) {
-        //             console.log(err);
-        //         }
+        const saltRounds = 10;
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+            bcrypt.hash(textPassword, salt, function (err, hash) {
+                if (err) {
+                    console.log(err);
+                }
         db.Sen_User.create({
             first_name: req.body.first_name.trim(),
             last_name: req.body.last_name.trim(),

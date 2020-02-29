@@ -1,4 +1,10 @@
-var db = require("../../models/index");
+const db = require("../../models/index");
+
+// npm jsonwebtoken - JSON Web Tokens for authentication
+const jwt = require('jsonwebtoken');
+
+// // npm bcryptjs - password encryption
+const bcrypt = require('bcryptjs');
 
 module.exports = function (app) {
 
@@ -15,12 +21,20 @@ module.exports = function (app) {
 
     // this route creates a new user //
     app.post("/api/user", function (req, res) {
+        const textPassword = req.body.password.trim();
+        // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
+        // increasing the cost factor by 1 doubles the necessary time
+        // more time means harder to brute force crack the password
+        const saltRounds = 10;
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+            bcrypt.hash(textPassword, salt, function (err, hash) {
+                if (err) {
+                    console.log(err);
+                }
         db.Sen_User.create(req.body)
             .then(function (dbUser) {
-
                 res.json(dbUser);
             });
-
     });
 
     // this is the route to delete a user //
