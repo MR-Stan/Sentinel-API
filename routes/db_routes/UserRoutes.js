@@ -28,13 +28,13 @@ module.exports = function (app) {
         const saltRounds = 10;
         bcrypt.genSalt(saltRounds, function (err, salt) {
             bcrypt.hash(textPassword, salt, function (err, hash) {
-                if (err) {
-                    console.log(err);
-                }
-        db.Sen_User.create(req.body)
-            .then(function (dbUser) {
-                res.json(dbUser);
+                if (err) throw err;
+                db.Sen_User.create(req.body)
+                    .then(function (dbUser) {
+                        res.json(dbUser);
+                    });
             });
+        });
     });
 
     // this is the route to delete a user //
