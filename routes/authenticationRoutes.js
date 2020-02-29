@@ -15,7 +15,7 @@ module.exports = function (app) {
 
     // parsing form data
     app.post('/login/submit', (req, res) => {
-        res.redirect('/login/' + req.body.email.trim() + '/' + req.body.password.trim())
+        res.redirect('/login/' + req.body.email.trim() + '/' + req.body.pass.trim())
     });
 
     // user login
