@@ -65,7 +65,7 @@ module.exports = function (app) {
 
     // create a new user
     app.post('/create/user', (req, res) => {
-        let textPassword = req.body.password.trim();
+        // let textPassword = req.body.password.trim();
         // salt round = cost factor i.e. how much time is needed to calculate a single bcrypt hash
         // increasing the cost factor by 1 doubles the necessary time
         // more time means harder to brute force crack the password
@@ -78,9 +78,8 @@ module.exports = function (app) {
         db.User.create({
             first_name: req.body.firstName.trim(),
             last_name: req.body.firstName.trim(),
-            password: hash,
+            pass: hash,
             email: req.body.email.trim(),
-            phone_number: req.body.phoneNumber.trim(),
         }).then(function (response) {
             res.send('user successfully created')
             // if (response) {
