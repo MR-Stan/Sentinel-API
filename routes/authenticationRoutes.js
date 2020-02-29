@@ -21,7 +21,7 @@ module.exports = function (app) {
     // user login
     app.get('/login/:email/:password', (req, res) => {
         // check db for username
-        db.Sen_user.findOne({
+        db.Sen_User.findOne({
             where: {
                 email: req.params.email
             }
@@ -75,7 +75,7 @@ module.exports = function (app) {
         //         if (err) {
         //             console.log(err);
         //         }
-        db.Sen_user.create({
+        db.Sen_User.create({
             first_name: req.body.first_name.trim(),
             last_name: req.body.last_name.trim(),
             pass: req.body.pass.trim(),
