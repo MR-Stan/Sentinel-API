@@ -1,5 +1,5 @@
 // database
-const db = require('../models');
+const db = require('../models/index');
 
 // npm jsonwebtoken - JSON Web Tokens for authentication
 const jwt = require('jsonwebtoken');
