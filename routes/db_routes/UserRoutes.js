@@ -8,16 +8,58 @@ const bcrypt = require('bcryptjs');
 
 module.exports = function (app) {
 
-    // this route finds one user by email address //
-    app.get("/api/user/:email", function (req, res) {
+    // login route
+    app.post('/login/submit', (req, res) => {
+        res.redirect('/login/' + req.body.email.trim() + '/' + req.body.pass.trim())
+    });
+
+    app.get('/login/:email/:pass', (req, res) => {
         db.Sen_User.findOne({
             where: {
                 email: req.params.email
             }
         }).then(function (dbUser) {
-            res.json(dbUser);
+            if (!dbUser) {
+                console.log('Email not found');
+                res.send('Email not found');
+            }
+            else {
+                bcrypt.compare(req.params.pass, dbUser.pass, (err, res) => {
+                    if (res) {
+                        jwt.sign({
+                            id: dbUser.id,
+                            email: dbUser.email
+                        }, 'secretkey', (err, token) => {
+                            console.log(token);
+                                res
+                                    .status(201)
+                                    .cookie('jwt', token, {
+                                        // cookie expires after 8 hours
+                                        expires: new Date(Date.now() + 8 * 3600000)
+                                    }).redirect('/');
+                        });
+
+                    }
+                    else {
+                        res.send('No response');
+                    }
+                });
+            }
         });
     });
+
+
+
+    // this route finds one user by email address //
+    // app.get("/api/user/:email", function (req, res) {
+    //     db.Sen_User.findOne({
+    //         where: {
+    //             email: req.params.email
+    //         }
+    //     }).then(function (dbUser) {
+    //         res.json(dbUser);
+    //     });
+    // });
 
     // this route creates a new user //
     app.post("/api/user", function (req, res) {
