@@ -15,9 +15,12 @@ module.exports = function (app) {
 
     // this route creates a new user //
     app.post("/api/user", function (req, res) {
-        db.User.create(req.body).then(function (dbUser) {
-            res.json(dbUser);
-        });
+        db.User.create(req.body)
+            .then(function (dbUser) {
+
+                res.json(dbUser);
+            });
+
     });
 
     // this is the route to delete a user //

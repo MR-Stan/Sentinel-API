@@ -20,22 +20,24 @@ const mysql = require('mysql2');
 // Initializing the server
 const app = express();
 
+// const bodyparcer = ()
+
 // Setting the server port - must be different then what's used on the front end
 const PORT = process.env.PORT || 5000;
 
-
 // Routes
-require("./routes/db_routes/GroupRoutes")(app);
-require("./routes/db_routes/UserRoutes")(app);
-require('./routes/authenticationRoutes')(app);
+
 
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
+require("./routes/db_routes/GroupRoutes")(app);
+require("./routes/db_routes/UserRoutes")(app);
+require('./routes/authenticationRoutes')(app);
 var connection;
 var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
@@ -57,4 +59,4 @@ db.sequelize.sync(syncOptions).then(function () {
     });
 });
 
-module.exports = app;
+// module.exports = app;
