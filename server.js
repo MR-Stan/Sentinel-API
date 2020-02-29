@@ -20,21 +20,21 @@ const mysql = require('mysql2');
 // Initializing the server
 const app = express();
 
+// const bodyparcer = ()
+
 // Setting the server port - must be different then what's used on the front end
 const PORT = process.env.PORT || 5000;
 
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 // Routes
 require("./routes/db_routes/GroupRoutes")(app);
 require("./routes/db_routes/UserRoutes")(app);
 require('./routes/authenticationRoutes')(app);
-
-
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(cors());
-app.use(cookieParser());
 
 var connection;
 var syncOptions = { force: false };

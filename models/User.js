@@ -1,7 +1,7 @@
 
 
 module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+    var Sen_User = sequelize.define("Sen_User", {
 
         first_name: {
             type: DataTypes.STRING
@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             default: false
         },
-        password: {
+        pass: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -40,13 +40,14 @@ module.exports = function (sequelize, DataTypes) {
         },
         GroupId: {
             type: DataTypes.INTEGER
-        }
+        },
+        pinColor: DataTypes.STRING,
     });
 
 
-    User.associate = function (models) {
-        User.hasMany(models.Group);
+    Sen_User.associate = function (models) {
+        Sen_User.hasMany(models.Group);
     };
 
-    return User;
+    return Sen_User;
 };
