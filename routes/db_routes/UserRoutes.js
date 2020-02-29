@@ -24,8 +24,8 @@ module.exports = function (app) {
                 res.send('Email not found');
             }
             else {
-                bcrypt.compare(req.params.pass, dbUser.pass, (err, res) => {
-                    if (res) {
+                bcrypt.compare(req.params.pass, dbUser.pass, (err, response) => {
+                    if (response) {
                         jwt.sign({
                             id: dbUser.id,
                             email: dbUser.email
@@ -36,9 +36,8 @@ module.exports = function (app) {
                                     .cookie('jwt', token, {
                                         // cookie expires after 8 hours
                                         expires: new Date(Date.now() + 8 * 3600000)
-                                    }).redirect('/');
+                                    }).redirect('/')
                         });
-
                     }
                     else {
                         res.send('No response');
