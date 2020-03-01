@@ -20,7 +20,6 @@ module.exports = function (app) {
             }
         }).then(function (dbUser) {
             if (!dbUser) {
-                console.log('Email not found');
                 res.send('Email not found');
             }
             else {
@@ -34,25 +33,12 @@ module.exports = function (app) {
                         });
                     }
                     else {
-                        res.send('No response');
+                        res.send('Password does not match');
                     }
                 });
             }
         });
     });
-
-
-
-    // this route finds one user by email address //
-    // app.get("/api/user/:email", function (req, res) {
-    //     db.Sen_User.findOne({
-    //         where: {
-    //             email: req.params.email
-    //         }
-    //     }).then(function (dbUser) {
-    //         res.json(dbUser);
-    //     });
-    // });
 
     // this route creates a new user //
     app.post("/api/user", function (req, res) {
