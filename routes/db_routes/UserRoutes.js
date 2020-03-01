@@ -30,13 +30,7 @@ module.exports = function (app) {
                             id: dbUser.id,
                             email: dbUser.email
                         }, 'secretkey', (err, token) => {
-                            console.log(token);
-                                res
-                                    .status(201)
-                                    .cookie('jwt', token, {
-                                        // cookie expires after 8 hours
-                                        expires: new Date(Date.now() + 8 * 3600000)
-                                    }).redirect('/')
+                            res.send(token);
                         });
                     }
                     else {
