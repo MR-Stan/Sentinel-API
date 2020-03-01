@@ -30,7 +30,7 @@ module.exports = function (app) {
                             id: dbUser.id,
                             email: dbUser.email
                         }, 'secretkey', (err, token) => {
-                            res.send(token);
+                                res.send({ token: token });
                         });
                     }
                     else {
