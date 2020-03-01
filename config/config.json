@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Esherichia666",
+    "password": null,
     "database": "sentinel",
     "host": "localhost",
     "dialect": "mysql",
