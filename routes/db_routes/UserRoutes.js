@@ -99,7 +99,7 @@ module.exports = function (app) {
     app.get("/api/user/:email", function (req, res) {
         db.Sen_User.findOne({
             where: {
-                id: req.params.id
+                email: req.params.email
             }
         })
     });
