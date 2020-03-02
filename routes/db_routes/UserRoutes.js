@@ -29,7 +29,7 @@ module.exports = function (app) {
                             id: dbUser.id,
                             email: dbUser.email
                         }, 'secretkey', (err, token) => {
-                                res.send({ token: token });
+                            res.send({ token: token });
                         });
                     }
                     else {
@@ -94,6 +94,14 @@ module.exports = function (app) {
         }).then(function (dbUser) {
             res.json(dbUser);
         });
+    });
+
+    app.get("/api/user/:email", function (req, res) {
+        db.Sen_User.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
     });
 
 

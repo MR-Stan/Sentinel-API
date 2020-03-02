@@ -45,9 +45,9 @@ module.exports = function (sequelize, DataTypes) {
     });
 
 
-    Sen_User.associate = function (models) {
-        Sen_User.hasMany(models.Group);
-    };
+    // Sen_User.associate = function (models) {
+    //     Sen_User.hasMany(models.Group);
+    // };
 
     return Sen_User;
 };
