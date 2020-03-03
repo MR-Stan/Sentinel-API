@@ -85,7 +85,7 @@ module.exports = function (app) {
         });
     });
 
-    app.put("/api/user", function (req, res) {
+    app.put("/api/user/group", function (req, res) {
         db.Sen_User.update(req.body, {
             where: {
                 email: req.body.email
