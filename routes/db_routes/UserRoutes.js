@@ -85,6 +85,16 @@ module.exports = function (app) {
         });
     });
 
+    app.put("/api/user", function (req, res) {
+        db.Sen_User.update(req.body, {
+            where: {
+                email: req.body.email
+            }
+        }).then(function (dbUser) {
+            res.json(dbUser);
+        });
+    });
+
     // this route finds all users with the same group id //
     app.get("/api/user/group/:GroupId", function (req, res) {
         db.Sen_User.findAll({
