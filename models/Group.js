@@ -8,6 +8,14 @@ module.exports = function (sequelize, DataTypes) {
         },
         wayPoint: {
             type: DataTypes.STRING,
+        },
+        lat: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        long: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     });
 
