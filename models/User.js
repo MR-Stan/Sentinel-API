@@ -34,6 +34,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        lat: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        long: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         GroupId: {
             type: DataTypes.INTEGER
         },
