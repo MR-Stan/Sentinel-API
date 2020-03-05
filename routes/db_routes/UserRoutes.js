@@ -117,5 +117,15 @@ module.exports = function (app) {
         });
     });
 
+    app.put("/api/user/alert", function (req, res) {
+        db.Sen_User.update(req.body, {
+            where: {
+                GroupId: req.body.GroupId
+            }
+        }).then(function (dbUser) {
+            res.json(dbUser);
+        });
+    });
+
 
 };
