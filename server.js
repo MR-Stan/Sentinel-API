@@ -35,7 +35,7 @@ app.use(cookieParser());
 require("./routes/db_routes/GroupRoutes")(app);
 require("./routes/db_routes/UserRoutes")(app);
 
-var connection;
+// var connection;
 var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
