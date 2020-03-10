@@ -7,20 +7,13 @@ const express = require("express");
 // Enables cross origin resource sharing
 const cors = require('cors');
 
-// Used to parse HTTP request cookies
-const cookieParser = require('cookie-parser');
-
 // Database models
 const db = require("./models/index");
-
-// const keys = require("./keys");
 
 const mysql = require('mysql2');
 
 // Initializing the server
 const app = express();
-
-// const bodyparcer = ()
 
 // Setting the server port - must be different then what's used on the front end
 const PORT = process.env.PORT || 5000;
@@ -29,7 +22,6 @@ const PORT = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser());
 
 // Routes
 require("./routes/db_routes/GroupRoutes")(app);
